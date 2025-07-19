@@ -1,0 +1,18 @@
+services:
+  php-dash:
+    build: . # Uncomment if you want to build your own image
+    #image: oe3anc/mrefd-dash:latest # Comment if you want to build your own image
+    ports:
+      - 8080:80
+    volumes: # Update your volumes!
+      - ./mrefd/config.inc.php:/var/www/html/include/config.inc.php:ro
+      - ./mrefd/mrefd.pid:/var/run/mrefd.pid:ro
+      - ./mrefd/mrefd.xml:/var/log/mrefd.xml:ro
+    environment:
+      - TZ=UTC
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:80/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
