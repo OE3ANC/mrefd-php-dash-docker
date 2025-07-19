@@ -1,7 +1,7 @@
 services:
   php-dash:
-    build: . # Uncomment if you want to build your own image
-    #image: oe3anc/mrefd-dash:latest # Comment if you want to build your own image
+    # build: . # Uncomment if you want to build your own image
+    image: oe3anc/mrefd-dash:latest # Comment if you want to build your own image
     ports:
       - 8080:80
     volumes: # Update your volumes!
